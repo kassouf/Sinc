@@ -22,7 +22,7 @@ double Get_Aj(double x, rule *r){
     return pmk_sinc(x, r->ifs[MEAN], r->ifs[DISP]);
     break;
   default:
-    printf("in %s: Fuzzy If part %d not supported yet\n",__FUNCTION__);
+    printf("in %s: Fuzzy If part %d not supported yet\n",__FUNCTION__, r->if_shape);
     break;
   }
   return 0;
