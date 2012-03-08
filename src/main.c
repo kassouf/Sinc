@@ -13,7 +13,7 @@ void Test_Run(SAM *s, double *x, double *f_x, int num_points);
 
 int main(){
   SAM fuzzy;
-  int num_rules = 3;
+  int num_rules = 6;
   int i,j;
 
   double x_vec[64];
@@ -44,9 +44,9 @@ int main(){
   }
   
 
-  for (i=0; i<10000; i++){
-    if (i%100 ==0){
-      printf("%Epoch: %d\n", (i+1));
+  for (i=0; i<1000000; i++){
+    if (i%50000 ==0){
+      printf("Epoch: %d\n", (i+1));
       printf("Rules:\n");
       Print_Rules(&fuzzy);
       printf("Results:\n");
@@ -55,6 +55,7 @@ int main(){
     for(j=0;j<64; j++){
       Learn(&fuzzy, x_vec[j], f_x_vec[j], 1e-5);
     }
+    fflush(stdout);
   }
 
 
@@ -65,7 +66,7 @@ int main(){
 
 void Test_Run(SAM *s, double *x, double *f_x, int num_points){
   int i;
-  printf("x\tf(x)\tF(x)");
+  printf("x\tf(x)\tF(x)\n");
   for (i=0; i<num_points; i++){
     printf("%1.4f  %1.4f  %1.4f\n",x[i], f_x[i], Fuzz_SAM(x[i],s));
   }

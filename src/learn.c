@@ -33,8 +33,8 @@ static void Learn_If_Sinc (rule *r, double mu, double x, double error, double df
 static void Learn_Then(rule *r, double mu, double error, double pj, double F_x){
   double new_vj;
   double new_cj;
-  register double cj = Get_Cj(r);
-  register double vj = Get_Vj(r);
+  double cj = Get_Cj(r);
+  double vj = Get_Vj(r);
 
   new_cj = cj + mu * error * pj;
   if(vj != 0){
@@ -53,9 +53,9 @@ void Learn(SAM* s, double x, double f_x, double mu){
   double F_x; //fuzzy result
   int i;
   double df_daj;
-  register rule *r;
-  register double aj;
-  register double pj;
+  rule *r;
+  double aj;
+  double pj;
 
   //calculate the error used for the gradient descent
   F_x = Fuzz_SAM(x, s);
