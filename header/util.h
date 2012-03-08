@@ -38,6 +38,10 @@ extern double Get_Aj(double x, rule *r);
 extern double Get_AjVj(double x, rule *r);
 extern double Fuzz_SAM(double x, SAM *s);
 extern void Print_Rule(rule *r);
+extern void Set_Vj(rule *r, double Vj);
+extern void Set_Cj(rule *r, double Cj);
+extern double Get_Cj(rule *r);
+
 
 
 

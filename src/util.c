@@ -4,8 +4,8 @@
 
 #include "util.h"
 
-#define pi (3.14159265358979323846)
-
+#define PI (3.14159265358979323846)
+#define SQRT_2_PI (2.506628274631000502415765284811)
 
 double pmk_sinc(double x, double m, double d){
   double param;
@@ -29,14 +29,16 @@ double Get_Aj(double x, rule *r){
 }
   
 double Get_Vj(rule *r){
+  double Vj;
   switch (r->then_shape){
   case SHAPE_GAUSS:
-    return r->then[STD]*sqrt(2*pi);
+    Vj = r->then[STD]*SQRT_2_PI;
     break;
   default:
-    return r->then[VOL];
+    Vj = r->then[VOL];
     break;
   }
+  return Vj;
 }
 
 double Get_AjVj(double x, rule *r){
@@ -48,12 +50,15 @@ double Fuzz_SAM(double x, SAM *s){
   double den = 0;
   double *temp = malloc(s->num_rules*sizeof(double));
   double fuzz; 
-
+  rule *r;
   for (i = 0; i<s->num_rules; i++){
-    temp[i]= Get_AjVj(x,&(s->rules[i]));
+    r = &(s->rules[i]);
+    s->aj[i]= Get_Aj(x, r);
+    temp[i]= s->aj[i] * Get_Vj(r);
     den += temp[i];
-    temp[i] *= s->rules[i].then[CENTROID];
+    temp[i] *= Get_Cj(r); //needed for cj
   }
+
   fuzz = 0.0;
   if (den == 0){
     printf("%s: denominator is zero!\n",__FUNCTION__);
@@ -103,7 +108,7 @@ static void Parse_Shape(int shape){
 }
 
 
-extern void Print_Rules(SAM *s){
+void Print_Rules(SAM *s){
   int i;
   printf("Total Number of rules: %d\t Rule summary:\n", s->num_rules);
   printf("Rule #\tIF Shape\tIF Mean\tIF Dispersion\tThen Shape\tThen Centroid\tThen Volume\n");
@@ -120,4 +125,23 @@ extern void Print_Rules(SAM *s){
 
   }
   printf("\nDone.\n");
+}
+
+void Set_Vj(rule *r, double Vj){
+  switch (r->then_shape){
+  case SHAPE_GAUSS:
+    r->then[STD] = Vj/SQRT_2_PI;
+    break;
+  default:
+    r->then[VOL] = Vj;
+    break;
+  }
+}    
+
+void Set_Cj(rule *r, double Cj){
+  r->then[CENTROID] = Cj;
+}
+
+double Get_Cj(rule *r){
+  return r->then[CENTROID];
 }
