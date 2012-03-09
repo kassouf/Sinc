@@ -4,6 +4,9 @@
 #include "learn.h"
 #include "util.h"
 
+//#define PMK_ABS(x)((x)<0?-(x):(x))
+#define PMK_ABS(x)((x))
+
 static void Learn_If_Sinc (rule *r, double mu, double x, double error, double df_daj, double aj){
   double daj_dm;
   double daj_dd;
@@ -26,7 +29,7 @@ static void Learn_If_Sinc (rule *r, double mu, double x, double error, double df
   }
   
   r->ifs[MEAN] = mj + mu * df_daj * daj_dm;
-  r->ifs[DISP] = dj + mu * df_daj * daj_dd;
+  r->ifs[DISP] = PMK_ABS(dj + mu * df_daj * daj_dd);
   
 }
 
@@ -43,6 +46,7 @@ static void Learn_Then(rule *r, double mu, double error, double pj, double F_x){
     new_vj = 0;
   }
   
+  new_vj = PMK_ABS(new_vj);
   Set_Cj(r, new_cj);
   Set_Vj(r, new_vj);
 
