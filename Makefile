@@ -18,3 +18,7 @@ $(BIN_DIR)/learn.o: $(BIN_DIR)
 	gcc -c $(SRC_DIR)/learn.c -o $(BIN_DIR)/learn.o -I$(INCLUDE_DIR)
 $(BIN_DIR):
 	mkdir $(BIN_DIR)
+
+remake:
+	make clean
+	make $(BIN_DIR)/fuzzy

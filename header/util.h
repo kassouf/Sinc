@@ -1,7 +1,7 @@
 #ifndef _PMK_UTIL_H_
 #define _PMK_UTIL_H_
 
-extern double pmk_sinc(double x, double m, double d);
+
 
 #define MEAN 0
 #define CENTROID 0
@@ -33,16 +33,35 @@ typedef struct _SAM{
 extern void Init_SAM(SAM *s, int num_rules);
 extern void Init_SAM_with_rules(SAM *s, int num_rules, rule *rules);
 extern void Free_SAM(SAM *s);
-extern double Get_Vj(rule *r);
+
+/*IF PART function*/
 extern double Get_Aj(double x, rule *r);
 extern double Get_AjVj(double x, rule *r);
-extern double Fuzz_SAM(double x, SAM *s);
-extern void Print_Rule(rule *r);
+
+/*Then Part functions*/
 extern void Set_Vj(rule *r, double Vj);
+extern double Get_Vj(rule *r);
+
 extern void Set_Cj(rule *r, double Cj);
 extern double Get_Cj(rule *r);
 
+/*SAM model*/
+extern double Fuzz_SAM(double x, SAM *s);
 
+/*Reporting Stuff*/
+extern void Print_Rule(rule *r);
+
+
+/************************************************************************
+These are Simple Gaussian Sigma to Volume and vice versa conversion functions
+and macros
+*/
+#define VJ_FROM_STD(STD)((STD)*SQRT_2_PI)
+#define STD_FROM_VJ(VJ)((VJ)/SQRT_2_PI)
+
+/************************************************************************/
+
+#define GET_RULE(pSAM, rule_num)(&( (pSAM)->rules[rule_num]))
 
 
 

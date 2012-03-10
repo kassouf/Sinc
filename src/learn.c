@@ -4,8 +4,8 @@
 #include "learn.h"
 #include "util.h"
 
-//#define PMK_ABS(x)((x)<0?-(x):(x))
-#define PMK_ABS(x)((x))
+#define PMK_ABS(x)((x)<0?-(x):(x))
+//#define PMK_ABS(x)((x))
 
 static void Learn_If_Sinc (rule *r, double mu, double x, double error, double df_daj, double aj){
   double daj_dm;
