@@ -1,0 +1,184 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXFileReference section */
+		85399A06150FEBB500646860 /* learn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = learn.h; sourceTree = "<group>"; };
+		85399A07150FEBB500646860 /* main.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = main.h; sourceTree = "<group>"; };
+		85399A08150FEBB500646860 /* util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = util.h; sourceTree = "<group>"; };
+		85399A09150FEBBB00646860 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; name = Makefile; path = ../Makefile; sourceTree = "<group>"; };
+		85399A0B150FEBC200646860 /* learn.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = learn.c; sourceTree = "<group>"; };
+		85399A0C150FEBC200646860 /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		85399A0D150FEBC200646860 /* util.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = util.c; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		853999F8150FEB9D00646860 = {
+			isa = PBXGroup;
+			children = (
+				85399A0A150FEBC200646860 /* src */,
+				85399A09150FEBBB00646860 /* Makefile */,
+				85399A05150FEBB500646860 /* header */,
+			);
+			sourceTree = "<group>";
+		};
+		85399A05150FEBB500646860 /* header */ = {
+			isa = PBXGroup;
+			children = (
+				85399A06150FEBB500646860 /* learn.h */,
+				85399A07150FEBB500646860 /* main.h */,
+				85399A08150FEBB500646860 /* util.h */,
+			);
+			name = header;
+			path = ../header;
+			sourceTree = "<group>";
+		};
+		85399A0A150FEBC200646860 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				85399A0B150FEBC200646860 /* learn.c */,
+				85399A0C150FEBC200646860 /* main.c */,
+				85399A0D150FEBC200646860 /* util.c */,
+			);
+			name = src;
+			path = ../src;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXLegacyTarget section */
+		853999FF150FEB9D00646860 /* fuzzy */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = bin/fuzzy;
+			buildConfigurationList = 85399A02150FEB9D00646860 /* Build configuration list for PBXLegacyTarget "fuzzy" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = /Users/pmkassouf/Documents/Code/Fuzzy;
+			dependencies = (
+			);
+			name = fuzzy;
+			passBuildSettingsInEnvironment = 0;
+			productName = fuzzy;
+		};
+/* End PBXLegacyTarget section */
+
+/* Begin PBXProject section */
+		853999FA150FEB9D00646860 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = 853999FD150FEB9D00646860 /* Build configuration list for PBXProject "fuzzy" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 853999F8150FEB9D00646860;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				853999FF150FEB9D00646860 /* fuzzy */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		85399A00150FEB9D00646860 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		85399A01150FEB9D00646860 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		85399A03150FEB9D00646860 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUGGING_SYMBOLS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		85399A04150FEB9D00646860 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		853999FD150FEB9D00646860 /* Build configuration list for PBXProject "fuzzy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				85399A00150FEB9D00646860 /* Debug */,
+				85399A01150FEB9D00646860 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		85399A02150FEB9D00646860 /* Build configuration list for PBXLegacyTarget "fuzzy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				85399A03150FEB9D00646860 /* Debug */,
+				85399A04150FEB9D00646860 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 853999FA150FEB9D00646860 /* Project object */;
+}

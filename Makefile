@@ -1,3 +1,4 @@
+#This is the make file for the fuzzy system
 BIN_DIR = bin
 SRC_DIR = src
 INCLUDE_DIR = header
