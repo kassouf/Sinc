@@ -13,10 +13,16 @@ void Report_Run(double *x, double *f_x, double *F_x, int num_points, int step);
 void Evaluate_SAM (SAM *s, double *x, double *F_x, int num_points);
 double Calc_MSE(double *f_x, double *F_x, int len);
 
+static void Generate_Initial_Rules(SAM *s, double start, double end, double overlap);
+
+double function(double x){
+  return sin(x);
+}
+
 int main(){
   SAM fuzzy;
-  int num_rules = 3;
-  int i,j, step;
+  int num_rules = 12;
+  int i,j;
 
   const int num_points = 64;
 
@@ -26,23 +32,16 @@ int main(){
   
   Init_SAM(&fuzzy, num_rules);
   
-  //Initial guess at a sine wave:                                                                                                                                                                           
+  //Function we are going to learn: a sine wave:                                                                                                                                                                           
   for (i=0; i<num_points; i++){
     x_vec[i]=(double)(i)/TWO_PI;
-    f_x_vec[i] = sin(x_vec[i]);
+    f_x_vec[i] = function(x_vec[i]);
   }
+  //Done.
 
-  step = (num_points-1)/(num_rules -1);
-  //Initialize the contents of the SAM
-  for (i = 0 ; i<num_rules; i++){
-    fuzzy.rules[i].if_shape = SHAPE_SINC;
-    fuzzy.rules[i].then_shape = SHAPE_GAUSS;
-    fuzzy.rules[i].ifs[MEAN] = x_vec[i*step];
-    fuzzy.rules[i].ifs[DISP] = (x_vec[63]-x_vec[0])/(double)(3*num_rules);
-    fuzzy.rules[i].then[CENTROID] = f_x_vec[i*step];
-    fuzzy.rules[i].then[STD] = 1;
-  }
-  
+ 
+  Generate_Initial_Rules(&fuzzy, x_vec[0],x_vec[63],0.5);
+    
   Print_Rules(&fuzzy);  
 
   for (i=0; i<1000000; i++){
@@ -70,7 +69,7 @@ int main(){
     }
 
     for(j=0; j<num_points ; j++){
-      Learn(&fuzzy, x_vec[j], f_x_vec[j], 1e-7);
+      Learn(&fuzzy, x_vec[j], f_x_vec[j], 1e-6);
     }
     
     
@@ -116,5 +115,27 @@ double Calc_MSE(double *f_x, double *F_x, int len){
   }
   MSE = MSE / (double)len;
   return MSE;
+}
+
+
+
+static void Generate_Initial_Rules(SAM *s, double start, double end, double overlap){
+  double range = end - start;
+  double step = (range)/(double)(s->num_rules - 1);
+  int i;
+  rule *r;
+
+
+  for (i=0; i<s->num_rules; i++){
+    r = &(s->rules[i]);
+    r->if_shape   = SHAPE_SINC;
+    r->then_shape = SHAPE_GAUSS;
+    
+    r->ifs[MEAN] = i*step;
+    r->ifs[DISP] = step * (1+overlap);
+    r->then[CENTROID] = function(r->ifs[MEAN]);
+    r->then[STD] = 2;
+
+  }
 }
 
