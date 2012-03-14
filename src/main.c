@@ -21,7 +21,7 @@ double function(double x){
 
 int main(){
   SAM fuzzy;
-  int num_rules = 12;
+  int num_rules = 3;
   int i,j;
 
   const int num_points = 64;
@@ -69,7 +69,7 @@ int main(){
     }
 
     for(j=0; j<num_points ; j++){
-      Learn(&fuzzy, x_vec[j], f_x_vec[j], 1e-6);
+      Learn(&fuzzy, x_vec[j], f_x_vec[j], 1e-5);
     }
     
     
@@ -128,7 +128,7 @@ static void Generate_Initial_Rules(SAM *s, double start, double end, double over
 
   for (i=0; i<s->num_rules; i++){
     r = &(s->rules[i]);
-    r->if_shape   = SHAPE_SINC;
+    r->if_shape   = SHAPE_GAUSS;
     r->then_shape = SHAPE_GAUSS;
     
     r->ifs[MEAN] = i*step;

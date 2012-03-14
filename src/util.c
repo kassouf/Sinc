@@ -56,6 +56,7 @@ double Get_Aj(double x, rule *r){
     break;
   case SHAPE_GAUSS:
     aj = pmk_gauss(x, r->ifs[MEAN], r->ifs[STD]);
+    break;
   default:
     printf("in %s: Fuzzy If part %d not supported yet\n",__FUNCTION__, r->if_shape);
     break;
@@ -191,3 +192,5 @@ void Set_Cj(rule *r, double Cj){
 double Get_Cj(rule *r){
   return r->then[CENTROID];
 }
+
+

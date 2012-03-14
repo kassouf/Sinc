@@ -33,6 +33,28 @@ static void Learn_If_Sinc (rule *r, double mu, double x, double error, double df
   
 }
 
+static void Learn_If_Gauss(rule *r, double mu, double x, double error, double df_daj, double aj){
+  double argument;
+  double daj_dm;
+  double daj_dd;
+  double mj = r->ifs[MEAN];
+  double dj = r->ifs[STD];
+  
+
+  if (dj != 0){
+    daj_dm = 2 * mu * error * df_daj * aj * (x - mj)/(dj*dj);
+    daj_dd = 2 * mu * error * df_daj * aj * ((x - mj)*(x - mj)) / (dj * dj * dj);
+  }else{
+    daj_dm = 0;
+    daj_dd = 0;
+  }
+  
+  r->ifs[MEAN] = mj + daj_dm;
+  r->ifs[STD]  = dj + daj_dd;
+
+}
+
+
 static void Learn_Then(rule *r, double mu, double error, double pj, double F_x){
   double new_vj;
   double new_cj;
@@ -83,6 +105,9 @@ void Learn(SAM* s, double x, double f_x, double mu){
     switch(r->if_shape){
     case SHAPE_SINC:
       Learn_If_Sinc(r, mu, x, error, df_daj, aj);
+      break;
+    case SHAPE_GAUSS:
+      Learn_If_Gauss(r, mu, x, error, df_daj, aj);
       break;
     default:
       printf("%s: %d if learning not yet supported",__FUNCTION__, r->if_shape);
